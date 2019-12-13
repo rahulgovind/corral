@@ -56,6 +56,8 @@ func InferFilesystem(location string) FileSystem {
 	var fs FileSystem
 	if strings.HasPrefix(location, "s3://") {
 		fs = &S3FileSystem{}
+	}else if strings.HasPrefix(location, "http://") {
+		fs = &FastFSFileSystem{}
 	} else {
 		fs = &LocalFileSystem{}
 	}

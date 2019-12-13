@@ -3,9 +3,9 @@
 > Serverless MapReduce
 
 [![Build Status](https://travis-ci.org/bcongdon/corral.svg?branch=master)](https://travis-ci.org/bcongdon/corral)
-[![Go Report Card](https://goreportcard.com/badge/github.com/bcongdon/corral)](https://goreportcard.com/report/github.com/bcongdon/corral)
+[![Go Report Card](https://goreportcard.com/badge/github.com/rahulgovind/corral)](https://goreportcard.com/report/github.com/rahulgovind/corral)
 [![codecov](https://codecov.io/gh/bcongdon/corral/branch/master/graph/badge.svg)](https://codecov.io/gh/bcongdon/corral)
-[![GoDoc](https://godoc.org/github.com/bcongdon/corral?status.svg)](https://godoc.org/github.com/bcongdon/corral)
+[![GoDoc](https://godoc.org/github.com/rahulgovind/corral?status.svg)](https://godoc.org/github.com/rahulgovind/corral)
 
 <p align="center">
     <img src="img/logo.svg" width="50%"/>
@@ -93,7 +93,7 @@ We can also input/output to S3 by pointing to an S3 bucket/files for input/outpu
 go run word_count.go --out s3://my-output-bucket/ s3://my-input-bucket/*
 ```
 
-More comprehensive examples can be found in [the examples folder](https://github.com/bcongdon/corral/tree/master/examples).
+More comprehensive examples can be found in [the examples folder](https://github.com/rahulgovind/corral/tree/master/examples).
 
 ## Deploying in Lambda
 
@@ -126,11 +126,11 @@ In short, setup credentials in `.aws/credentials` as one would with any other AW
 
 ## Configuration
 
-There are a number of ways to specify configuraiton for corral applications. To hard-code configuration, there are a variety of [Options](https://godoc.org/github.com/bcongdon/corral#Option) that may be used when instantiating a Job.
+There are a number of ways to specify configuraiton for corral applications. To hard-code configuration, there are a variety of [Options](https://godoc.org/github.com/rahulgovind/corral#Option) that may be used when instantiating a Job.
 
 Configuration values are used in the order, with priority given to whichever location is set first:
 
-1. Hard-coded job [Options](https://godoc.org/github.com/bcongdon/corral#Option).
+1. Hard-coded job [Options](https://godoc.org/github.com/rahulgovind/corral#Option).
 1. Command line flags
 1. Environment variables
 1. Configuration file

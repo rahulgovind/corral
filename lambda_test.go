@@ -11,8 +11,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/lambda"
 	"github.com/aws/aws-sdk-go/service/lambda/lambdaiface"
 
-	"github.com/bcongdon/corral/internal/pkg/corfs"
-	"github.com/bcongdon/corral/internal/pkg/corlambda"
+	"github.com/rahulgovind/corral/internal/pkg/corfs"
+	"github.com/rahulgovind/corral/internal/pkg/corlambda"
 
 	"github.com/stretchr/testify/assert"
 )

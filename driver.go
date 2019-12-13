@@ -19,7 +19,7 @@ import (
 	pb "gopkg.in/cheggaaa/pb.v1"
 
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/bcongdon/corral/internal/pkg/corfs"
+	"github.com/rahulgovind/corral/internal/pkg/corfs"
 	flag "github.com/spf13/pflag"
 )
 

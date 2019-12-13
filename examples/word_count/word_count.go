@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/bcongdon/corral"
+	"github.com/rahulgovind/corral"
 )
 
 type wordCount struct{}
@@ -38,8 +38,8 @@ func main() {
 	job := corral.NewJob(wordCount{}, wordCount{})
 
 	options := []corral.Option{
-		corral.WithSplitSize(10 * 1024),
-		corral.WithMapBinSize(10 * 1024),
+		corral.WithSplitSize(1024 * 1024),
+		corral.WithMapBinSize(1024 * 1024),
 	}
 
 	driver := corral.NewDriver(job, options...)
