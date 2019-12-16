@@ -12,6 +12,7 @@ type FileSystemType int
 const (
 	Local FileSystemType = iota
 	S3
+	FastFS
 )
 
 // FileSystem provides the file backend for MapReduce jobs.
@@ -42,6 +43,8 @@ func InitFilesystem(fsType FileSystemType) FileSystem {
 		fs = &LocalFileSystem{}
 	case S3:
 		fs = &S3FileSystem{}
+	case FastFS:
+		fs = &FastFSFileSystem{}
 	}
 
 	fs.Init()

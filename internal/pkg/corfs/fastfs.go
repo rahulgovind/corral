@@ -121,8 +121,8 @@ func (ffs *FastFSFileSystem) OpenWriter(filePath string) (io.WriteCloser, error)
 	if err != nil {
 		return nil, err
 	}
-
-	return ffs.client.OpenWriter(parsed.Path)
+	return ffs.client.BlockUploadWriter(parsed.Path)
+	//return ffs.client.OpenWriter(parsed.Path)
 }
 
 func (ffs *FastFSFileSystem) Delete(filePath string) error {
@@ -130,7 +130,7 @@ func (ffs *FastFSFileSystem) Delete(filePath string) error {
 	if err != nil {
 		return err
 	}
-	ffs.client.Delete(parsed.Path)
+	go ffs.client.Delete(parsed.Path)
 	return nil
 }
 
@@ -150,7 +150,7 @@ func (ffs *FastFSFileSystem) Join(elem ...string) string {
 }
 
 func (ffs *FastFSFileSystem) Init() error {
-	ffs.client = helpers.New("localhost:8100", 16, 16)
+	ffs.client = helpers.New("ec2-18-220-77-181.us-east-2.compute.amazonaws.com:8100", 2, 5)
 	ffs.objectCache, _ = lru.New(10000)
 	return nil
 }

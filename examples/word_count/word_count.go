@@ -15,8 +15,12 @@ func (w wordCount) Map(key, value string, emitter corral.Emitter) {
 	re := regexp.MustCompile("[^a-zA-Z0-9\\s]+")
 
 	sanitized := strings.ToLower(re.ReplaceAllString(value, " "))
+
 	for _, word := range strings.Fields(sanitized) {
 		if len(word) == 0 {
+			continue
+		}
+		if !strings.HasPrefix(word, "a") {
 			continue
 		}
 		err := emitter.Emit(word, strconv.Itoa(1))
@@ -38,8 +42,8 @@ func main() {
 	job := corral.NewJob(wordCount{}, wordCount{})
 
 	options := []corral.Option{
-		corral.WithSplitSize(1024 * 1024),
-		corral.WithMapBinSize(1024 * 1024),
+		corral.WithSplitSize( 16* 1024 * 1024),
+		corral.WithMapBinSize(  16* 1024*1024),
 	}
 
 	driver := corral.NewDriver(job, options...)

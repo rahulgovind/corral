@@ -103,7 +103,7 @@ func (s *S3FileSystem) ListFiles(pathGlob string) ([]FileInfo, error) {
 // OpenReader opens a reader to the file at filePath. The reader
 // is initially seeked to "startAt" bytes into the file.
 func (s *S3FileSystem) OpenReader(filePath string, startAt int64) (io.ReadCloser, error) {
-	fmt.Println("OpenReader")
+	//fmt.Println("OpenReader")
 	parsed, err := parseS3URI(filePath)
 	if err != nil {
 		return nil, err
@@ -119,7 +119,7 @@ func (s *S3FileSystem) OpenReader(filePath string, startAt int64) (io.ReadCloser
 		bucket:    parsed.Hostname(),
 		key:       parsed.Path,
 		offset:    startAt,
-		chunkSize: 20 * 1024 * 1024, // 20 Mb chunk size
+		chunkSize: 1024 * 1024, // 20 Mb chunk size
 		totalSize: objStat.Size,
 	}
 	err = reader.loadNextChunk()
@@ -128,7 +128,7 @@ func (s *S3FileSystem) OpenReader(filePath string, startAt int64) (io.ReadCloser
 
 // OpenWriter opens a writer to the file at filePath.
 func (s *S3FileSystem) OpenWriter(filePath string) (io.WriteCloser, error) {
-	fmt.Println("OpenWriter")
+	//fmt.Println("OpenWriter")
 	parsed, err := parseS3URI(filePath)
 	if err != nil {
 		return nil, err
@@ -147,7 +147,7 @@ func (s *S3FileSystem) OpenWriter(filePath string) (io.WriteCloser, error) {
 
 // Stat returns information about the file at filePath.
 func (s *S3FileSystem) Stat(filePath string) (FileInfo, error) {
-	fmt.Println("Calling Stat: ", filePath)
+	//fmt.Println("Calling Stat: ", filePath)
 	if object, exists := s.objectCache.Get(filePath); exists {
 		return FileInfo{
 			Name: filePath,
@@ -170,7 +170,7 @@ func (s *S3FileSystem) Stat(filePath string) (FileInfo, error) {
 	}
 
 	for _, object := range result.Contents {
-		fmt.Println(object.Key)
+		//fmt.Println(object.Key)
 		if *object.Key == parsed.Path {
 			s.objectCache.Add(filePath, object)
 			return FileInfo{
@@ -199,7 +199,7 @@ func (s *S3FileSystem) Init() error {
 
 // Delete deletes the file at filePath.
 func (s *S3FileSystem) Delete(filePath string) error {
-	fmt.Println("Calling Delete ", filePath)
+	//fmt.Println("Calling Delete ", filePath)
 	parsed, err := parseS3URI(filePath)
 	if err != nil {
 		return err

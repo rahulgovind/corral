@@ -104,7 +104,7 @@ func (l *lambdaExecutor) RunMapper(job *Job, jobNumber int, binID uint, inputSpl
 		BinID:            binID,
 		Splits:           inputSplits,
 		IntermediateBins: job.intermediateBins,
-		FileSystemType:   corfs.S3,
+		FileSystemType:   corfs.FastFS,
 		WorkingLocation:  job.outputPath,
 	}
 	payload, err := json.Marshal(mapTask)
@@ -126,7 +126,7 @@ func (l *lambdaExecutor) RunReducer(job *Job, jobNumber int, binID uint) error {
 		JobNumber:       jobNumber,
 		Phase:           ReducePhase,
 		BinID:           binID,
-		FileSystemType:  corfs.S3,
+		FileSystemType:  corfs.FastFS,
 		WorkingLocation: job.outputPath,
 		Cleanup:         job.config.Cleanup,
 	}
